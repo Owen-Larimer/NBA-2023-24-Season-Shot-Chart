@@ -8,13 +8,13 @@ In this project, the goal was to analyze and visualize shooting statistics for t
 ### Data Sources
 
 NBA shot data: The primary dataset used in this project is one of my own making, the "NBA_2023_24_shot_data.xlsx" file, containing a row for each player who played during the season, and their **FGM** (Field Goal Makes), **FGA** (Field Goal Attempts), and **FG%** (Field Goal Percentage) from 6 different areas on the court.
-- This data was obtained from the official NBA site [https://www.nba.com/stats](https://www.nba.com/stats). API's exist to pull such data from years past and real time, and for those looking to automate projects like this or get cleaner data, that's what I would do; however, it was simple enough for my needs to just extract the data from their page into excel and then practice cleaning it myself.
+- This data was obtained from the official NBA site [https://www.nba.com/stats](https://www.nba.com/stats). API's exist to pull such data from years past and real time, and for those looking to automate projects like this or get cleaner data for a multitude of statistics, that's what I would do; however, it was simple enough for my needs to just extract the data from their page into excel and then practice cleaning it myself.
 
 ### Tools
 
 - Excel - Initialized Dataset; Some Cleaning
 - Jupyter Notebook (Python and Pandas) - Major Cleaning; Some Analysis and Visualization
-- Tableau - Visualization and Interactables
+- Tableau - Heavy Visualization and Interactables
   
 ### Data Cleaning/Preparation Phase
 
@@ -45,7 +45,31 @@ To view all names that contained special characters using regular expressions:
 df[df['Player'].str.contains(r'[^\x00-\x7F]', regex=True)]
 ```
 
-To 
+To manually create coordinates for each zone specific to the image used in background of map:
+```python
+x_coord_mapping = {
+    'Restricted Area': 0,
+    'Paint (-Rest)': -10,
+    'Mid Range': 10,
+    'Left Corner': -235,
+    'Right Corner': 235,
+    'Above Break': -10
+    # Add other shot types if needed
+}
+
+y_coord_mapping = {
+    'Restricted Area': 0,
+    'Paint (-Rest)': 50,
+    'Mid Range': 100,
+    'Left Corner': 0,
+    'Right Corner': 0,
+    'Above Break': 250
+    # Add other shot types if needed
+}
+
+FGM['X Coordinate'] = FGM['Shot Type'].map(x_coord_mapping)
+FGM['Y Coordinate'] = FGM['Shot Type'].map(y_coord_mapping)
+```
 
 ### Creating the Map
 My initial attempt at mapping the shots in Tableau was rough. My Tableau skills were pretty green and I had never utilized background images as a basis for a scatterplot before. Getting the image onto the actual worksheet was a challenge in itself, as the data _needs_ X and Y coordinates to put the image into a usable worksheet. Otherwise, the background image will just stay as invalid. I was able to create these inside Tableau using a *Calculated Field*, and was able to add the image. However, after a long time messing around in Tableau's settings and capabilities I realized that the format my data was in would not support the kind of implementation I wanted. That was when I returned to Pandas to do my second round of data cleaning and came out with the "all_shots.csv" dataset.
@@ -75,4 +99,4 @@ Another notable limitation is the fact that my search parameters do not account 
 
 
 ### From Here
-The main goal of this project 
+The main goal of this project was to visualize scoring statistics in the NBA from last season. My initial vision was to have clickable "zones" in which a user could see important statistics from that zone, such as the scoring leader, percentage leader, worst overall, etc. In doing the project I had to realign my goals early on to fit more within my capabilities with these tools. I instead elected to show statistics for every player in every zone. 
