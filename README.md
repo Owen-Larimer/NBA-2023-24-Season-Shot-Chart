@@ -16,7 +16,7 @@ NBA shot data: The primary dataset used in this project is one of my own making,
 ### Tools
 
 - Excel - Initialized Dataset; Some Cleaning
-- Jupyter Notebook (Python and Pandas) - Major Cleaning; Some Analysis and Visualization
+- Jupyter Notebook (Python and Pandas) - Major Cleaning; Some Analysis and Visualization --> (See: "NBA_Shot_Chart_Cleaning.ipynb" file)
 - Tableau - Heavy Visualization and Interactables
   
 ### Data Cleaning/Preparation Phase
@@ -73,6 +73,8 @@ y_coord_mapping = {
 FGM['X Coordinate'] = FGM['Shot Type'].map(x_coord_mapping)
 FGM['Y Coordinate'] = FGM['Shot Type'].map(y_coord_mapping)
 ```
+
+
 
 ### Creating the Map
 My initial attempt at mapping the shots in Tableau was rough. My Tableau skills were pretty green and I had never utilized background images as a basis for a scatterplot before. Getting the image onto the actual worksheet was a challenge in itself, as the data _needs_ X and Y coordinates to put the image into a usable worksheet. Otherwise, the background image will just stay as invalid. I was able to create these inside Tableau using a *Calculated Field*, and was able to add the image. However, after a long time messing around in Tableau's settings and capabilities I realized that the format my data was in would not support the kind of implementation I wanted. That was when I returned to Pandas to do my second round of data cleaning and came out with the "all_shots.csv" dataset.
