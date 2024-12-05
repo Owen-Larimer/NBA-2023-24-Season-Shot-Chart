@@ -16,7 +16,7 @@ NBA shot data: The primary dataset used in this project is one of my own making,
 ### Tools
 
 - Excel - Initialized Dataset; Some Cleaning
-- Jupyter Notebook (Python and Pandas) - Major Cleaning; Some Analysis and Visualization --> (See: "NBA_Shot_Chart_Cleaning.ipynb" file)
+- Jupyter Notebook (Python and Pandas) - Major Cleaning; Some Analysis and Visualization
 - Tableau - Heavy Visualization and Interactables
   
 ### Data Cleaning/Preparation Phase
@@ -26,7 +26,7 @@ In cleaning in Excel, we performed the following:
 2. Adjusting column datatypes
 3. Ridding stray null values
 
-The majority of cleaning took place in JupyterLab, using Pandas (See: "shot_chart_cleaning.ipynb" file).
+The majority of cleaning took place in JupyterLab, using Pandas (See: "NBA_Shot_Chart_Cleaning.ipynb" file).
 1. Got rid of null values that were hidden in Excel.
 2. Converted many columns into numerical ones.
 3. Viewed the data around certain conditionals, such as shot attempts.
@@ -73,7 +73,19 @@ y_coord_mapping = {
 FGM['X Coordinate'] = FGM['Shot Type'].map(x_coord_mapping)
 FGM['Y Coordinate'] = FGM['Shot Type'].map(y_coord_mapping)
 ```
+To lengthen my values to allow for mapping in Tableau (Same Process for FGM, FGA, and FG%):
+```python
+FGM = pd.melt(my_nba, id_vars=['Player', 'Age', 'Team'], value_vars=['Rest_Area_FGM', 'Paint_FGM', 'Mid_FGM', 'L_Corner_3_FGM', 'R_Corner_3_FGM', 'Above_Break_3_FGM'])
+```
 
+To merge all three FGM, FGA, and FG% lengthened dataframes:
+```python
+first_merge = FGM.merge(FGA, on=['Player', 'Age', 'Team', 'Shot Type', 'X Coordinate', 'Y Coordinate'])
+second_merge = first_merge.merge(FG_Percentage, on=['Player', 'Age', 'Team', 'Shot Type', 'X Coordinate', 'Y Coordinate'])
+
+order = ['Player', 'Age', 'Team', 'Shot Type', 'FGM', 'FGA', 'FG%', 'X Coordinate', 'Y Coordinate']
+all_shots = second_merge[order]
+```
 
 
 ### Creating the Map
