@@ -85,7 +85,7 @@ order = ['Player', 'Age', 'Team', 'Shot Type', 'FGM', 'FGA', 'FG%', 'X Coordinat
 all_shots = second_merge[order]
 ```
 
-### Creating the Map
+### Creating the Map:
 
 My initial attempt at mapping the shots in Tableau was rough. My Tableau skills were pretty green and I had never utilized background images as a basis for a scatterplot before. Getting the image onto the actual worksheet was a challenge in itself, as the data _needs_ X and Y coordinates to put the image into a usable worksheet. Otherwise, the background image will just stay as invalid. I was able to create these inside Tableau using a *Calculated Field*, and was able to add the image. However, after a long time messing around in Tableau's settings and capabilities I realized that the format my data was in would not support the kind of implementation I wanted. That was when I returned to Pandas to do my second round of data cleaning and came out with the "all_shots.csv" dataset.
 
@@ -107,20 +107,20 @@ All of that got put on the end-result dashboard, which was then uploaded to Tabl
 ![image](https://github.com/user-attachments/assets/9a63494f-f69f-46e3-8954-f6c1ea8a5025)
 *Text table creation*
 
-### Capabilites
+### Capabilites:
 
 Now with the finished shot chart, you can view the 23-24 shooting statistics of any player who played in the 2023-24 NBA season from a multitude of zones or any singular zone, not including free throws. This kind of tool could be used for any number of future shooting data projects, or just as a way of identifying individual players' shooting skills and hot zones.
 
-### Limitations
+### Limitations:
 
 The main limitation of this project was the data and its collection process. Because you cannot scrape directly from the National Basketball Association's official site, you either have to find an API or website that does it for you, or manually grab the data and completely clean it yourself. I cannot be certain since I have not tried, but this type of manual collection could prove useless with certain statistics that are more categorical in nature. Any numerical value is easy to grab, clean, and convert as a data type, but when you start wanting unabbreviated team names, or notes on trading within its own column, you could run into problems if not using an API. Be mindful of any data you grab, and ensure it's cleanliness.
 
 Another notable limitation is the fact that my search parameters within the Tableau Dashboard do not account for players traded midseason. From what I can understand from my data, the "Team" column only lists the players team at the end of the season. If a user knew a player from a specific team in which that player was traded from during that season, they would not show up in the player search box after setting the team search box to that original team. This wasn't a big deal as it does not make or break the visualization, but I can see how a user might struggle in a very specific scenario due to this fact.
 
-### Takeaways
+### Takeaways:
 
 I learned an obscene amount from this project. Not only could I refine my data cleaning skills in Python, but it gave me a bit of a glimpse into the capabilities of excel in regards to cleaning. However, my Tableau skills were by far the most improved as a result of this project. Before this, I knew very little about the ins and outs of Tableau mapping, filters, calculated fields, and parameters. This project included all of that, and I am now much more confident in my ability to maneuver them. For example, I understand much better how to map data on a background image, how it's not difficult so much as it is choosy about the data an image accepts, and how it can be used to make data visualization so much easier to understand and so much more interesting for a user.
 
-### From Here
+### From Here:
 
 The main goal of this project was to visualize scoring statistics in the NBA from last season. My initial vision was to have clickable "zones" in which a user could see important statistics from that zone, such as the scoring leader, percentage leader, worst overall, etc. In doing the project I had to realign my goals early on to fit more within my capabilities with these tools. I instead elected to show statistics for every player in every zone, which meant more data could be shown but I couldn't go as in depth into that data as I had originally imagined. At some point, there are many features I want to consider adding to this shot chart. I hope to be able to make the zones cover that entire area of the court, rather than just being a dot, and for them to light up when hovered over. I want to find a way to show statistical leaders for each shot type after clicking on them, or adding some kind of button/filter on the side that changes the shot chart to show that statistical leader. This kind of project could be massively expanded to include multiple years, with free throws and eFG% (effective field goal percentage) as additional stats. A drop down search where you could search through years could make that possible, all that is needed is the data to implement it. I think adding a player's portrait into the text table would be a great addition, and would come with its own challenges of having an image as a data type. Additionally, plenty other visualizations like this could be made regarding the various individual stats in basketball. I can see versions of this shot chart being done for assists, rebounding, win percentages for coaches and players, and locations of turnovers. There really is no constricting limit for this type of project, it's only a question of having the right data.
