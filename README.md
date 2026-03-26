@@ -13,7 +13,7 @@ NBA shot data: The primary dataset used in this project is one of my own making,
 
 ### Tools
 
-- Excel - Initialized Dataset; Some Cleaning
+- Excel - Initialized Dataset; Some cleaning and basic name changes
 - Jupyter Notebook (Python and Pandas) - Major Cleaning; Some Analysis and Visualization
 - Tableau - Heavy Visualization and Interactables
   
